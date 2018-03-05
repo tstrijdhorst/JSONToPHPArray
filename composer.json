@@ -1,0 +1,17 @@
+{
+    "name": "tstrijdhorst/json-to-php-array",
+    "description": "Convert a JSON string to the PHP Array equivalent",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Tim Strijdhorst",
+            "email": "tim@strijdhorst.me"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "JTPAC\\": "src/"
+        }
+    }
+}
