@@ -27,11 +27,11 @@ class JSONToPHPArrayConverter {
 		
 		foreach ($array as $key => $value) {
 			if (is_string($key)) {
-				$string .= "\t".var_export($key, true)." => ";
+				$string .= '  '.var_export($key, true).' => ';
 			}
 			
 			if (is_array($value)) {
-				$string .= "\t".$this->arrayToPHPSyntax($value).','.PHP_EOL;
+				$string .= $this->indent($this->arrayToPHPSyntax($value)).','.PHP_EOL;
 				continue;
 			}
 			
@@ -41,5 +41,22 @@ class JSONToPHPArrayConverter {
 		$string .= ']';
 		
 		return $string;
+	}
+	
+	/**
+	 * @param string $string
+	 * @return string
+	 */
+	private function indent($string) {
+		$lines = explode(PHP_EOL, $string);
+		
+		$stringIndented = $lines[0].PHP_EOL;
+		$lineCount      = count($lines);
+		for ($i = 1; $i < $lineCount - 1; $i++) {
+			$stringIndented .= '  '.$lines[$i].PHP_EOL;
+		}
+		$stringIndented .= '  '.$lines[$lineCount - 1];
+		
+		return $stringIndented;
 	}
 }
